@@ -20,24 +20,24 @@ public class DSComunity implements Iterable<HashMapIndirecte<Integer,Integer>>{
     private Graf<Integer,Integer,Integer> graph; //graph that we will study
 
     //builder
-    public DSComunity( Graf<Integer,Integer,Integer> graph){
+    private DSComunity( Graf<Integer,Integer,Integer> graph){
         this.numComunities = 0;
         this.comunities = new HashMapIndirecte<Integer,HashMapIndirecte<Integer,Integer>>(numComStarting);
         this.graph = graph;
     }
     //create new community
-    public void newCommunity(Integer comNumber){
+    private void newCommunity(Integer comNumber){
         this.comunities.inserir(comNumber, new HashMapIndirecte<>(startingSize));
         numComunities++;
     }
     //add a precreated community
-    public void newCommunity(Integer comNumber, HashMapIndirecte<Integer,Integer> community){
+    private void newCommunity(Integer comNumber, HashMapIndirecte<Integer,Integer> community){
         this.comunities.inserir(comNumber, community);
         numComunities++;
     }
 
     //remove community. IN order to properly erase it, the community must be EMPTY
-    public void removeComunity(Integer comunID) throws ElementNoTrobat{
+    private void removeComunity(Integer comunID) throws ElementNoTrobat{
         try {
             if(this.comunities.consultar(comunID).esBuida()){
                 this.comunities.esborrar(comunID);
@@ -64,7 +64,7 @@ public class DSComunity implements Iterable<HashMapIndirecte<Integer,Integer>>{
         }
     }
 
-    //assigns a certain vertax to the specified community
+    //assigns a certain vertex to the specified community
     private void vertexToCommunity(Integer vertexID, Integer comunID)throws ElementNoTrobat{
         try {
             this.comunities.consultar(comunID).inserir(vertexID, vertexID);
@@ -181,7 +181,7 @@ public class DSComunity implements Iterable<HashMapIndirecte<Integer,Integer>>{
         return wdegree;
     }
 
-    public float modularity(){
+    private float modularity(){
         float modularity = 0.0f;
         int m = graph.numArestes();
         float resolution = 1.0f;
@@ -253,7 +253,7 @@ public class DSComunity implements Iterable<HashMapIndirecte<Integer,Integer>>{
         return copy;
     }
 
-    public void louvain(){
+    private void louvain(){
         //1. assign each vertex to its own community and save the current modularity
         this.communizer();
         float bestModu = this.modularity();
@@ -328,7 +328,7 @@ public class DSComunity implements Iterable<HashMapIndirecte<Integer,Integer>>{
     }
 
     //refiner. apply after louvain
-    public void refiner(){
+    private void refiner(){
         ILlistaGenerica<Integer> comList = this.comunities.obtenirClaus();
         Iterator<Integer> comIterator = comList.iterator();
         Iterator<Integer> secComIterator;
