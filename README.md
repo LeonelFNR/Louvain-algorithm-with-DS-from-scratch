@@ -4,5 +4,5 @@ I wanted to build something bigger in order to make sense of all what was learne
 
 Once having applied the Louvain algorithm to the given graph, the refiner goes through each vertex of the graph once agains and checks if any single movement of a single vertex to another community would increase the modularity. I have found this extra function to enhance the effectiveness of the algorithm, for example in file "dolphins.net", the obtained distribution is of greater modularity than the one obtained using Pajek software or Gephi.
 
-Moreover, is important to note that this implementation is able to read Pajek format files.
+Moreover, is important to note that this implementation is able to read Pajek format files. The format of the output file is the name of the file plus the obtained modularity.
 
