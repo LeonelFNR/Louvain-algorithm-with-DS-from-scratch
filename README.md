@@ -6,3 +6,5 @@ Once having applied the Louvain algorithm to the given graph, the refiner goes t
 
 Moreover, is important to note that this implementation is able to read Pajek format files. The format of the output file is the name of the file plus the obtained modularity.
 
+This algorithm is intented **for nondirected graphs with edges of whole weight**.
+
